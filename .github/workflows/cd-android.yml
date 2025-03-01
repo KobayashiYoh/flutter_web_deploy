@@ -1,0 +1,32 @@
+name: Build and Upload Android APK
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'lib/**'
+jobs:
+  build_and_upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.29.0
+      - run: flutter --version
+      - name: Build Android APK
+        run: flutter build apk --release
+      - name: Upload APK to Firebase Storage
+        run: |
+          firebase storage:upload build/app/outputs/flutter-apk/app-release.apk \
+            --project flutter-android-build-learning
+      - name: Save metadata to Firestore
+        run: |
+          firebase firestore:push /builds \
+            --data '{ "fileName": "app-release.apk", "uploadedAt": "$(date -u +%Y-%m-%dT%H:%M:%SZ)" }' \
+            --project flutter-android-build-learning
+        env:
+          FIREBASE_CLI_EXPERIMENTS: webframeworks
