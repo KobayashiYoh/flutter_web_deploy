@@ -14,7 +14,7 @@ jobs:
         name: "Authenticate to Google Cloud"
         uses: "google-github-actions/auth@v0.4.0"
         with:
-          workload_identity_provider: "projects/flutter-web-deploy-learning/locations/global/workloadIdentityPools/github/providers/my-repo"
+          workload_identity_provider: "projects/525356177346/locations/global/workloadIdentityPools/github/providers/my-repo"
           service_account: "github-action-940977073@flutter-web-deploy-learning.iam.gserviceaccount.com"
       - name: Upload file to Google Cloud Storage
         run: gcloud storage cp lib/main.dart gs://flutter-android-build-learning
