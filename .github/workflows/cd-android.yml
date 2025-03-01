@@ -6,6 +6,9 @@ on:
 jobs:
   build_and_upload:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - id: "auth"
         name: "Authenticate to Google Cloud"
