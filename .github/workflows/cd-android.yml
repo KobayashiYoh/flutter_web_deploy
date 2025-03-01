@@ -15,11 +15,13 @@ jobs:
           channel: stable
           flutter-version: 3.29.0
       - run: flutter --version
-      - name: Build Android APK
-        run: flutter build apk --release
+#      - name: Build Android APK
+#        run: flutter build apk --release
+      - name: Install Firebase CLI
+        run: curl -sL https://firebase.tools | bash
       - name: Upload APK to Firebase Storage
         run: |
-          firebase storage:upload build/app/outputs/flutter-apk/app-release.apk \
+          firebase storage:upload lib/main.dart \
             --project flutter-android-build-learning
       - name: Save metadata to Firestore
         run: |
