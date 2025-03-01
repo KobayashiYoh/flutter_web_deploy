@@ -17,7 +17,7 @@ jobs:
           workload_identity_provider: "projects/525356177346/locations/global/workloadIdentityPools/github/providers/my-repo"
           service_account: "github-action-940977073@flutter-web-deploy-learning.iam.gserviceaccount.com"
       - name: Upload file to Google Cloud Storage
-        run: gcloud storage cp lib/main.dart gs://flutter-android-build-learning
+        run: gcloud storage cp lib/main.dart gs://flutter-web-deploy-learning.firebasestorage.app
       # - name: Clone repository
       #   uses: actions/checkout@v4
       # - name: Set up Flutter
