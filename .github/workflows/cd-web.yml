@@ -19,7 +19,10 @@ jobs:
           channel: stable
           flutter-version: 3.29.0
       - name: Generate firebase_options.dart
-        run: echo '${{ secrets.FIREBASE_OPTIONS_DART }}' > client/lib/firebase_options.dart
+        run: |
+          cat <<EOF > lib/firebase_options.dart
+          ${{ secrets.FIREBASE_OPTIONS }}
+          EOF
       - name: Install dependencies
         run: flutter pub get
         working-directory: client
