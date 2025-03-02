@@ -17,24 +17,21 @@ jobs:
         with:
           channel: stable
           flutter-version: 3.29.0
-      - name: Install FlutterFire CLI
-        run: dart pub global activate flutterfire_cli
-      - name: Add FlutterFire CLI to PATH
-        run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
+      - name: Set up FlutterFire CLI
+        run: dart pub global activate flutterfire_cli && echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
       - name: Install expect
         run: sudo apt-get update && sudo apt-get install -y expect
-      - name: Run flutterfire configure
-        run: expect -c '
-          spawn flutterfire configure
-          expect "You have an existing `firebase.json` file and possibly already configured your project for Firebase. Would you prefer to reuse the values in your existing `firebase.json` file to configure your project? (y/n)" { send "y\r" }
-          expect "Would you like to create a new Firebase project? (y/n)" { send "n\r" }
-          expect eof '
-        working-directory: client
-      - name: Upload firebase_options.dart as artifact
+      - name: Run flutterfire configure and upload firebase_options.dart as artifact
         uses: actions/upload-artifact@v4
         with:
           name: firebase-options
           path: client/lib/firebase_options.dart
+          run: expect -c '
+            spawn flutterfire configure
+            expect "You have an existing `firebase.json` file and possibly already configured your project for Firebase. Would you prefer to reuse the values in your existing `firebase.json` file to configure your project? (y/n)" { send "y\r" }
+            expect "Would you like to create a new Firebase project? (y/n)" { send "n\r" }
+            expect eof '
+          working-directory: client
       - name: Install dependencies
         run: flutter pub get
         working-directory: client
