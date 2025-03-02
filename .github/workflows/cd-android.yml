@@ -10,6 +10,8 @@ jobs:
       id-token: write
       contents: read
     steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
       - name: Setup Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         with:
@@ -20,8 +22,6 @@ jobs:
           gcloud auth activate-service-account --key-file=key.json
       - name: Upload file to Google Cloud Storage
         run: gcloud storage cp README.md gs://flutter-web-deploy-learning.firebasestorage.app
-      # - name: Clone repository
-      #   uses: actions/checkout@v4
       # - name: Set up Flutter
       #   uses: subosito/flutter-action@v2
       #   with:
