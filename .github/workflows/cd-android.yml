@@ -10,12 +10,14 @@ jobs:
       id-token: write
       contents: read
     steps:
-      - id: "auth"
-        name: "Authenticate to Google Cloud"
-        uses: "google-github-actions/auth@v0.4.0"
+      - name: Setup Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
         with:
-          workload_identity_provider: "projects/525356177346/locations/global/workloadIdentityPools/github/providers/my-repo"
-          service_account: "github-action-940977073@flutter-web-deploy-learning.iam.gserviceaccount.com"
+          project_id: flutter-web-deploy-learning
+      - name: Authenticate with service account
+        run: |
+          echo "$GCP_SERVICE_ACCOUNT_KEY" > key.json
+          gcloud auth activate-service-account --key-file=key.json
       - name: Upload file to Google Cloud Storage
         run: gcloud storage cp lib/main.dart gs://flutter-web-deploy-learning.firebasestorage.app
       # - name: Clone repository
