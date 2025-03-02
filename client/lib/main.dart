@@ -12,12 +12,25 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
   static FirebaseAnalyticsObserver observer =
       FirebaseAnalyticsObserver(analytics: analytics);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    Future(() async {
+      await MyApp.analytics.logAppOpen();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +40,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      navigatorObservers: [MyApp.observer],
       home: MyHomePage(
         title: 'Flutter Demo Home Page',
-        analytics: analytics,
-        observer: observer,
+        analytics: MyApp.analytics,
+        observer: MyApp.observer,
       ),
     );
   }
