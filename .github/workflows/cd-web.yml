@@ -21,7 +21,7 @@ jobs:
       - name: Generate firebase_options.dart
         run: |
           cat <<EOF > lib/firebase_options.dart
-          ${{ secrets.FIREBASE_OPTIONS }}
+          ${{ secrets.FIREBASE_OPTIONS_DART }}
           EOF
       - name: Install dependencies
         run: flutter pub get
