@@ -30,7 +30,7 @@ jobs:
       - name: Add FlutterFire CLI to PATH
         run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
       - name: Run flutterfire configure
-        run: flutterfire configure
+        run: flutterfire configure --project=flutter-web-deploy-learning --yes
         working-directory: client
       - run: flutter pub get
         working-directory: client
