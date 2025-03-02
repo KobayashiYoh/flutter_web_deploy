@@ -18,7 +18,7 @@ jobs:
           channel: stable
           flutter-version: 3.29.0
       - name: Set up FlutterFire CLI
-        run: dart pub global activate flutterfire_cli && echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
+        run: dart pub global activate flutterfire_cli 1.1.0 && echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
       - name: Install expect
         run: sudo apt-get update && sudo apt-get install -y expect
       - name: Run flutterfire configure and upload firebase_options.dart as artifact
