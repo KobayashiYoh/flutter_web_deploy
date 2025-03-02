@@ -1,13 +1,1 @@
-{
-  "hosting": {
-    "source": ".",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "frameworksBackend": {
-      "region": "asia-east1"
-    }
-  }
-}
+{"hosting":{"source":".","ignore":["firebase.json","**/.*","**/node_modules/**"],"frameworksBackend":{"region":"asia-east1"}},"flutter":{"platforms":{"android":{"default":{"projectId":"flutter-web-deploy-learning","appId":"1:525356177346:android:a535d0efa92f797d66685b","fileOutput":"android/app/google-services.json"}},"ios":{"default":{"projectId":"flutter-web-deploy-learning","appId":"1:525356177346:ios:6d84cd139ce50d5066685b","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"flutter-web-deploy-learning","configurations":{"android":"1:525356177346:android:a535d0efa92f797d66685b","ios":"1:525356177346:ios:6d84cd139ce50d5066685b","web":"1:525356177346:web:8a719dc5e4657e4266685b"}}}}}}
