@@ -29,6 +29,8 @@ jobs:
         run: dart pub global activate flutterfire_cli
       - name: Add FlutterFire CLI to PATH
         run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
+      - name: Install expect
+        run: sudo apt-get update && sudo apt-get install -y expect
       - name: Run flutterfire configure
         run: expect -c '
           spawn flutterfire configure
