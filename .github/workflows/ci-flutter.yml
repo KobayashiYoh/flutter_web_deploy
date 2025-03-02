@@ -25,7 +25,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: firebase-options
-          path: client/lib/firebase_options.dart
+          path: lib/firebase_options.dart
           run: expect -c '
             spawn flutterfire configure
             expect "You have an existing `firebase.json` file and possibly already configured your project for Firebase. Would you prefer to reuse the values in your existing `firebase.json` file to configure your project? (y/n)" { send "y\r" }
