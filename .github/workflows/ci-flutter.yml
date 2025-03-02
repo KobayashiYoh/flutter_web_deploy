@@ -12,14 +12,6 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
-      - name: Setup Google Cloud SDK
-        uses: google-github-actions/setup-gcloud@v1
-        with:
-          project_id: flutter-web-deploy-learning
-      - name: Authenticate with service account
-        run: |
-          echo '${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}' > key.json
-          gcloud auth activate-service-account --key-file=key.json
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -36,8 +28,7 @@ jobs:
           spawn flutterfire configure
           expect "You have an existing `firebase.json` file and possibly already configured your project for Firebase. Would you prefer to reuse the values in your existing `firebase.json` file to configure your project? (y/n)" { send "y\r" }
           expect "Would you like to create a new Firebase project? (y/n)" { send "n\r" }
-          expect eof
-          '
+          expect eof '
         working-directory: client
       - run: flutter pub get
         working-directory: client
