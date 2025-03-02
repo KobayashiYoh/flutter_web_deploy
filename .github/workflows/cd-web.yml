@@ -21,7 +21,9 @@ jobs:
       - name: Generate firebase_options.dart
         run: echo '${{ secrets.FIREBASE_OPTIONS_DART }}' > firebase_options.dart
         working-directory: client/lib
-      - run: flutter --version
+      - name: Install dependencies
+        run: flutter pub get
+        working-directory: client
       - run: flutter build web
         working-directory: client
       - uses: FirebaseExtended/action-hosting-deploy@v0
