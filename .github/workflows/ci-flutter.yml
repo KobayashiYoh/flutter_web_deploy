@@ -30,7 +30,14 @@ jobs:
           expect "Would you like to create a new Firebase project? (y/n)" { send "n\r" }
           expect eof '
         working-directory: client
-      - run: flutter pub get
+      - name: Upload firebase_options.dart as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: firebase-options
+          path: client/lib/firebase_options.dart
+      - name: Install dependencies
+        run: flutter pub get
         working-directory: client
-      - run: flutter analyze
+      - name: Run flutter analyze
+        run: flutter analyze
         working-directory: client
