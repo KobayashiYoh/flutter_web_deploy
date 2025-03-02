@@ -16,7 +16,7 @@ jobs:
           project_id: flutter-web-deploy-learning
       - name: Authenticate with service account
         run: |
-          echo "$GCP_SERVICE_ACCOUNT_KEY" > key.json
+          echo '${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}' > key.json
           gcloud auth activate-service-account --key-file=key.json
       - name: Upload file to Google Cloud Storage
         run: gcloud storage cp lib/main.dart gs://flutter-web-deploy-learning.firebasestorage.app
